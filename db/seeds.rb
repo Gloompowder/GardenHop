@@ -16,8 +16,28 @@ puts "Got #{results.body.count} results. Dumping first results:"
 # results.body.first.each do |k, v|
 #   puts "#{k}: #{v}"
 # end
+Garden.destroy_all
 
-results.body.map do |result| Garden.create({propertyid: result.propid, boro: result.boro, communityboard: result.community_board, address: result.address , size: result.size, jurisdiction: result.jurisdiction, longitude: result.longitude, latitude: result.latitude, postcode: result.postcode})end 
+# i = 0 
+results.body.each do |result| 
+    # binding.pry
+        garden = Garden.create({
+        property_id: result&.propid, 
+        boro: result&.boro, 
+        community_board: result&.community_board, 
+        address: result&.address , 
+        garden_size: result&.size, 
+        jurisdiction: result&.jurisdiction, 
+        longitude: result&.longitude, 
+        latitude: result&.latitude, 
+        postcode: result&.postcode}) 
+        # if garden.save 
+        #     i + 1 
+        # else
+        #     binding.pry  
+        # end  
+end 
+
     # t.integer :propertyid
     # t.string :boro
     # t.string :communityboard
@@ -29,5 +49,7 @@ results.body.map do |result| Garden.create({propertyid: result.propid, boro: res
     # t.integer :latitude
     # t.integer :longitutde
     # t.string :postcode
+
+
 
 

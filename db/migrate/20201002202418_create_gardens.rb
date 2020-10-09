@@ -1,13 +1,13 @@
 class CreateGardens < ActiveRecord::Migration[6.0]
   def change
     create_table :gardens do |t|
-      t.string :propertyid
+      t.string :property_id
       t.string :boro
-      t.string :communityboard
+      t.string :community_board
       t.string :address
-      t.string :size
+      t.string :garden_size
       t.string :jurisdiction
-      t.string :neighborhoodhome
+      t.string :neighborhood_home
       t.string :cross_streets
       t.string :latitude
       t.string :longitude

@@ -171,6 +171,8 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.7)
+    webpack-rails (0.9.11)
+      railties (>= 3.2.0)
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -195,6 +197,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   sqlite3 (~> 1.4)
   tzinfo-data
+  webpack-rails
 
 RUBY VERSION
    ruby 2.6.1p33

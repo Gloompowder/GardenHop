@@ -51,3 +51,7 @@ gem 'soda-ruby'
 
 # secret folder
 gem 'dotenv'
+
+# webpack
+
+gem 'webpack-rails'

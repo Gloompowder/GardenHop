@@ -13,13 +13,13 @@
 ActiveRecord::Schema.define(version: 2020_10_02_202850) do
 
   create_table "gardens", force: :cascade do |t|
-    t.string "propertyid"
+    t.string "property_id"
     t.string "boro"
-    t.string "communityboard"
+    t.string "community_board"
     t.string "address"
-    t.string "size"
+    t.string "garden_size"
     t.string "jurisdiction"
-    t.string "neighborhoodhome"
+    t.string "neighborhood_home"
     t.string "cross_streets"
     t.string "latitude"
     t.string "longitude"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2020_10_02_202850) do
     t.string "apartment"
     t.string "city"
     t.string "state"
-    t.integer "zipcode"
+    t.integer "postcode"
     t.boolean "volunteer"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -49,10 +49,10 @@ ActiveRecord::Schema.define(version: 2020_10_02_202850) do
     t.integer "garden_id"
     t.string "purpose"
     t.string "date"
-    t.string "intime"
-    t.string "outtime"
-    t.string "scheduledin"
-    t.string "scheduledout"
+    t.string "in_time"
+    t.string "out_time"
+    t.string "scheduled_in"
+    t.string "scheduled_out"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
