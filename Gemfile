@@ -54,4 +54,6 @@ gem 'dotenv'
 
 # webpack
 
-gem 'webpack-rails'
+gem 'webpacker'
+
+gem 'foreman'
