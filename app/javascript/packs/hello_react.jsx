@@ -5,8 +5,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
-import AppointmentForm from ‘./appointment_form’
-import { AppointmentsList } from ‘./appointments_list’
 
 const Hello = props => (
   <div>Hello {props.name}!</div>
@@ -26,3 +24,5 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(document.createElement('div')),
   )
 })
+
+
