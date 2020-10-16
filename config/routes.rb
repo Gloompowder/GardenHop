@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # get 'dashboard/home'
+  root to: 'dashboards#home'
   namespace :api do
     namespace :v1 do
       resources :visits

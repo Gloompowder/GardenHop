@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'soda/client'
 require 'pry'
+require 'faker'
 
 client = SODA::Client.new({:domain => "data.cityofnewyork.us", :app_token => ENV["APIKEY"]})
 
@@ -21,7 +22,7 @@ Garden.destroy_all
 # i = 0 
 results.body.each do |result| 
     # binding.pry
-        garden = Garden.create({
+        garden = Garden.find_or_create_by({
         property_id: result&.propid, 
         boro: result&.boro, 
         community_board: result&.community_board, 
@@ -49,6 +50,25 @@ end
     # t.integer :latitude
     # t.integer :longitutde
     # t.string :postcode
+    arr = [true, false]
+
+    User.destroy_all
+
+    10.times do 
+        User.find_or_create_by(
+        name: Faker::Name.unique.name, 
+        username: Faker::Hipster.words(number: 1), 
+        password: Faker::IDNumber.unique.valid, 
+        city: Faker::Address.city,
+        state: Faker::Address.state,
+        address: Faker::Address.street_address,
+        postcode: Faker::Address.zip,
+        volunteer: arr.sample,
+        apartment: Faker::Address.secondary_address,
+        phone: Faker::PhoneNumber.unique.cell_phone,
+        email: Faker::Internet.unique.email
+        )   
+    end                                               
 
 
 
