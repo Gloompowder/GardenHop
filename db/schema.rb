@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2020_10_02_202850) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "gardens", force: :cascade do |t|
     t.string "property_id"
     t.string "boro"
@@ -48,11 +51,10 @@ ActiveRecord::Schema.define(version: 2020_10_02_202850) do
     t.integer "user_id"
     t.integer "garden_id"
     t.string "purpose"
-    t.string "date"
-    t.string "in_time"
-    t.string "out_time"
-    t.string "scheduled_in"
-    t.string "scheduled_out"
+    t.datetime "in_time"
+    t.datetime "out_time"
+    t.datetime "scheduled_in"
+    t.datetime "scheduled_out"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -4,11 +4,10 @@ class CreateVisits < ActiveRecord::Migration[6.0]
       t.integer :user_id
       t.integer :garden_id
       t.string :purpose
-      t.string :date
-      t.string :in_time
-      t.string :out_time
-      t.string :scheduled_in
-      t.string :scheduled_out
+      t.datetime :in_time
+      t.datetime :out_time
+      t.datetime :scheduled_in
+      t.datetime :scheduled_out
 
       t.timestamps
     end

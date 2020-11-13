@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'soda/client'
-require 'pry'
+# require 'pry'
 require 'faker'
 
 client = SODA::Client.new({:domain => "data.cityofnewyork.us", :app_token => ENV["APIKEY"]})
@@ -22,16 +22,18 @@ Garden.destroy_all
 # i = 0 
 results.body.each do |result| 
     # binding.pry
+    if result&.latitude.present? 
         garden = Garden.find_or_create_by({
-        property_id: result&.propid, 
-        boro: result&.boro, 
-        community_board: result&.community_board, 
-        address: result&.address , 
-        garden_size: result&.size, 
-        jurisdiction: result&.jurisdiction, 
-        longitude: result&.longitude, 
-        latitude: result&.latitude, 
-        postcode: result&.postcode}) 
+            property_id: result&.propid.presence, 
+            boro: result&.boro.presence, 
+            community_board: result&.community_board.presence, 
+            address: result&.address.presence , 
+            garden_size: result&.size.presence, 
+            jurisdiction: result&.jurisdiction.presence, 
+            longitude: result&.longitude.presence, 
+            latitude: result&.latitude.presence, 
+            postcode: result&.postcode.presence}) 
+    end
         # if garden.save 
         #     i + 1 
         # else
@@ -68,7 +70,22 @@ end
         phone: Faker::PhoneNumber.unique.cell_phone,
         email: Faker::Internet.unique.email
         )   
-    end                                               
+    end     
+    
+    30.times do Visit.find_or_create_by(
+        user_id: User.pluck(:id).sample,
+        garden_id: Garden.pluck(:id).sample
+    )
+    end
+
+    # t.integer :user_id
+    # t.integer :garden_id
+    # t.string :purpose
+    # t.string :date
+    # t.string :in_time
+    # t.string :out_time
+    # t.string :scheduled_in
+    # t.string :scheduled_out
 
 
 
