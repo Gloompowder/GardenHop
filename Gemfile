@@ -68,4 +68,8 @@ gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'mast
 
 gem 'rack-cors'
 
+gem 'searchkick'
+
+gem 'pry'
+
 

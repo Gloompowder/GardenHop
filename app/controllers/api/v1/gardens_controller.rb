@@ -1,6 +1,8 @@
+require 'pry'
 class Api::V1::GardensController < ApplicationController
+    before_action :load_gardens, only: :index
     def index 
-        @gardens = Garden.all 
+        # @gardens = Garden.all 
         render json: @gardens
     end 
 
@@ -23,6 +25,10 @@ class Api::V1::GardensController < ApplicationController
     def destroy
         @garden = Garden.find(params[:id])
         @garden.destroy
+    end
+
+    def load_gardens
+        @gardens = Garden.all
     end
 
     private 
