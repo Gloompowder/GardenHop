@@ -28,7 +28,18 @@ class Api::V1::GardensController < ApplicationController
     end
 
     def load_gardens
-        @gardens = Garden.all
+        if query_params.present?
+            puts "*********************"
+            puts query_params
+            puts "*********************"
+            @gardens = Garden.search query_params[:keyword]
+        else
+            @gardens = Garden.all
+        end
+    end
+
+    def query_params 
+        params.permit(:keyword)
     end
 
     private 
