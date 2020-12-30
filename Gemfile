@@ -72,4 +72,4 @@ gem 'searchkick'
 
 gem 'pry'
 
-
+gem 'redis-rails'
