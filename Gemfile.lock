@@ -89,6 +89,11 @@ GEM
       elasticsearch-transport (= 7.10.0)
     elasticsearch-api (7.10.0)
       multi_json
+    elasticsearch-model (7.1.1)
+      activesupport (> 3)
+      elasticsearch (> 1)
+      hashie
+    elasticsearch-rails (7.1.1)
     elasticsearch-transport (7.10.0)
       faraday (~> 1)
       multi_json
@@ -260,6 +265,8 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   dotenv
+  elasticsearch-model
+  elasticsearch-rails
   faker!
   foreman
   jbuilder (~> 2.7)

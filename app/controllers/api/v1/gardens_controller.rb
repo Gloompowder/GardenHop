@@ -32,6 +32,7 @@ class Api::V1::GardensController < ApplicationController
             puts "*********************"
             puts query_params
             puts "*********************"
+            binding.pry
             @gardens = Garden.search query_params[:keyword]
         else
             @gardens = Garden.all

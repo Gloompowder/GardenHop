@@ -1,5 +1,5 @@
 class Visit < ApplicationRecord
-    searchkick %i[in_time out_time scheduled_in scheduled_out]
+    searchkick word_middle: %i[in_time out_time scheduled_in scheduled_out]
     belongs_to :garden
     belongs_to :user
 

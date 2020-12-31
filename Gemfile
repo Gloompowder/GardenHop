@@ -73,3 +73,7 @@ gem 'searchkick'
 gem 'pry'
 
 gem 'redis-rails'
+
+gem 'elasticsearch-rails'
+
+gem 'elasticsearch-model'

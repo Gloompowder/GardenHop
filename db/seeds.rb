@@ -19,13 +19,30 @@ puts "Got #{results.body.count} results. Dumping first results:"
 # end
 Garden.destroy_all
 
-# i = 0 
+# i = 0 ''
+def boro_name(result)
+    case result&.boro.presence
+        when 'B'
+            'Brooklyn'
+        when 'M'
+            'Manhattan'
+        when 'Q'
+            'Queens'
+        when 'R'
+            'Staten Island'
+        when 'X'
+            'Bronx'
+        else
+            nil
+    end
+
+end
 results.body.each do |result| 
     # binding.pry
     if result&.latitude.present? 
         garden = Garden.find_or_create_by({
             property_id: result&.propid.presence, 
-            boro: result&.boro.presence, 
+            boro: boro_name(result), 
             community_board: result&.community_board.presence, 
             address: result&.address.presence , 
             garden_size: result&.size.presence, 
