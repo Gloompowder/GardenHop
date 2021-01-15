@@ -27,22 +27,6 @@ class Api::V1::GardensController < ApplicationController
         @garden.destroy
     end
 
-    def load_gardens
-        if query_params.present?
-            puts "*********************"
-            puts query_params
-            puts "*********************"
-            # binding.pry
-            @gardens = Garden.search query_params[:keyword]
-        else
-            @gardens = Garden.all
-        end
-    end
-
-    def query_params 
-        params.permit(:keyword)
-    end
-
     private 
 
     def garden_params 
@@ -71,4 +55,25 @@ class Api::V1::GardensController < ApplicationController
         # t.datetime "created_at", precision: 6, null: false
         # t.datetime "updated_at", precision: 6, null: false
     end
+
+    def load_gardens
+        if query_params.present?
+            puts "*********************"
+            puts query_params
+            puts "*********************"
+            # binding.pry
+            @gardens = Garden.search query_params[:search_term], fields: [search_fields]
+        else
+            @gardens = Garden.all
+        end
+    end
+
+    def search_fields
+        query_params[:search_fields]
+    end
+
+    def query_params 
+        params.permit(:search_term, :search_fields)
+    end
+
 end
