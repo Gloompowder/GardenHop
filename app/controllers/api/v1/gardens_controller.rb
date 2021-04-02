@@ -57,23 +57,30 @@ class Api::V1::GardensController < ApplicationController
     end
 
     def load_gardens
-        if query_params.present?
+        # binding.pry
+        if filter_params.present?
             puts "*********************"
-            puts query_params
+            puts filter_params
+            binding.pry
             puts "*********************"
-            # binding.pry
-            @gardens = Garden.search query_params[:search_term], fields: [search_fields]
+            # @gardens = Garden.search body: es_data.es_payload.merge(fields: filter_params.keys)
+            @gardens = Garden.search body: es_data.es_payload
         else
             @gardens = Garden.all
         end
     end
 
-    def search_fields
-        query_params[:search_fields]
+    def es_data 
+        QueryWrangler::BaseWrangler.new(filter_params)
     end
 
-    def query_params 
-        params.permit(:search_term, :search_fields)
+    def search_fields
+        filter_params[:fields]
     end
+
+    def filter_params
+        params.permit(:address, :boro, :distance)
+    end
+
 
 end

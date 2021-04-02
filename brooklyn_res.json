@@ -1,0 +1,28 @@
+{
+  "size": 10000,
+  "query": {
+    "bool": {
+      "should": [
+        {
+          "multi_match": {
+            "query": "Brooklyn",
+            "fields": ["boro.analyzed", "boro.word_start"],
+            "analyzer": "searchkick_search2",
+            "minimum_should_match": "100%",
+            "type": "cross_fields"
+          }
+        },
+        {
+          "multi_match": {
+            "query": "Brooklyn",
+            "fields": ["boro.analyzed", "boro.word_start"],
+            "analyzer": "searchkick_search",
+            "minimum_should_match": "100%",
+            "type": "cross_fields"
+          }
+        }
+      ],
+      "must_not": []
+    }
+  }
+}

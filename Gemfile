@@ -74,6 +74,26 @@ gem 'pry'
 
 gem 'redis-rails'
 
+gem 'elasticsearch'
+
 gem 'elasticsearch-rails'
 
 gem 'elasticsearch-model'
+
+# Lat and long
+gem 'geocoder' 
+
+group :development, :test do
+
+  gem 'shoulda'
+
+  gem 'byebug', platform: :mri
+
+  gem 'rspec-rails', '~> 3.5'
+
+  gem 'factory_bot_rails'
+
+  gem 'database_cleaner'
+
+end
+

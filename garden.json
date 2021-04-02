@@ -1,0 +1,196 @@
+{
+  "gardens_development_20210321140641148": {
+    "aliases": { "gardens_development": {} },
+    "mappings": {
+      "dynamic_templates": [
+        {
+          "string_template": {
+            "match": "*",
+            "match_mapping_type": "string",
+            "mapping": {
+              "fields": {
+                "analyzed": {
+                  "analyzer": "searchkick_index",
+                  "index": true,
+                  "type": "text"
+                }
+              },
+              "ignore_above": 30000,
+              "type": "keyword"
+            }
+          }
+        }
+      ],
+      "properties": {
+        "address": {
+          "type": "keyword",
+          "ignore_above": 30000,
+          "fields": {
+            "analyzed": { "type": "text", "analyzer": "searchkick_index" }
+          }
+        },
+        "boro": {
+          "type": "keyword",
+          "ignore_above": 30000,
+          "fields": {
+            "analyzed": { "type": "text", "analyzer": "searchkick_index" },
+            "word_start": {
+              "type": "text",
+              "analyzer": "searchkick_word_start_index"
+            }
+          }
+        },
+        "community_board": {
+          "type": "keyword",
+          "ignore_above": 30000,
+          "fields": {
+            "analyzed": { "type": "text", "analyzer": "searchkick_index" }
+          }
+        }
+      }
+    },
+    "settings": {
+      "index": {
+        "max_ngram_diff": "49",
+        "routing": {
+          "allocation": { "include": { "_tier_preference": "data_content" } }
+        },
+        "number_of_shards": "1",
+        "provided_name": "gardens_development_20210321140641148",
+        "max_shingle_diff": "4",
+        "creation_date": "1616350001215",
+        "analysis": {
+          "filter": {
+            "searchkick_suggest_shingle": {
+              "max_shingle_size": "5",
+              "type": "shingle"
+            },
+            "searchkick_edge_ngram": {
+              "type": "edge_ngram",
+              "min_gram": "1",
+              "max_gram": "50"
+            },
+            "searchkick_index_shingle": {
+              "token_separator": "",
+              "type": "shingle"
+            },
+            "searchkick_search_shingle": {
+              "token_separator": "",
+              "output_unigrams_if_no_shingles": "true",
+              "output_unigrams": "false",
+              "type": "shingle"
+            },
+            "searchkick_stemmer": { "type": "snowball", "language": "English" },
+            "searchkick_ngram": {
+              "type": "ngram",
+              "min_gram": "1",
+              "max_gram": "50"
+            }
+          },
+          "analyzer": {
+            "searchkick_word_start_index": {
+              "filter": ["lowercase", "asciifolding", "searchkick_edge_ngram"],
+              "type": "custom",
+              "tokenizer": "standard"
+            },
+            "searchkick_keyword": {
+              "filter": ["lowercase"],
+              "type": "custom",
+              "tokenizer": "keyword"
+            },
+            "searchkick_text_end_index": {
+              "filter": [
+                "lowercase",
+                "asciifolding",
+                "reverse",
+                "searchkick_edge_ngram",
+                "reverse"
+              ],
+              "type": "custom",
+              "tokenizer": "keyword"
+            },
+            "searchkick_search2": {
+              "filter": ["lowercase", "asciifolding", "searchkick_stemmer"],
+              "char_filter": ["ampersand"],
+              "type": "custom",
+              "tokenizer": "standard"
+            },
+            "searchkick_word_middle_index": {
+              "filter": ["lowercase", "asciifolding", "searchkick_ngram"],
+              "type": "custom",
+              "tokenizer": "standard"
+            },
+            "searchkick_search": {
+              "filter": [
+                "lowercase",
+                "asciifolding",
+                "searchkick_search_shingle",
+                "searchkick_stemmer"
+              ],
+              "char_filter": ["ampersand"],
+              "type": "custom",
+              "tokenizer": "standard"
+            },
+            "searchkick_text_start_index": {
+              "filter": ["lowercase", "asciifolding", "searchkick_edge_ngram"],
+              "type": "custom",
+              "tokenizer": "keyword"
+            },
+            "searchkick_word_end_index": {
+              "filter": [
+                "lowercase",
+                "asciifolding",
+                "reverse",
+                "searchkick_edge_ngram",
+                "reverse"
+              ],
+              "type": "custom",
+              "tokenizer": "standard"
+            },
+            "searchkick_word_search": {
+              "filter": ["lowercase", "asciifolding"],
+              "type": "custom",
+              "tokenizer": "standard"
+            },
+            "searchkick_autocomplete_search": {
+              "filter": ["lowercase", "asciifolding"],
+              "type": "custom",
+              "tokenizer": "keyword"
+            },
+            "searchkick_suggest_index": {
+              "filter": [
+                "lowercase",
+                "asciifolding",
+                "searchkick_suggest_shingle"
+              ],
+              "type": "custom",
+              "tokenizer": "standard"
+            },
+            "searchkick_text_middle_index": {
+              "filter": ["lowercase", "asciifolding", "searchkick_ngram"],
+              "type": "custom",
+              "tokenizer": "keyword"
+            },
+            "searchkick_index": {
+              "filter": [
+                "lowercase",
+                "asciifolding",
+                "searchkick_index_shingle",
+                "searchkick_stemmer"
+              ],
+              "char_filter": ["ampersand"],
+              "type": "custom",
+              "tokenizer": "standard"
+            }
+          },
+          "char_filter": {
+            "ampersand": { "type": "mapping", "mappings": ["&=> and "] }
+          }
+        },
+        "number_of_replicas": "1",
+        "uuid": "bIePRZwATdORT0iscIiXaw",
+        "version": { "created": "7110199" }
+      }
+    }
+  }
+}
